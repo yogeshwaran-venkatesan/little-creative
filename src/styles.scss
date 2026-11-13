@@ -3,6 +3,15 @@
    Dark cinematic theme with warm gold accent
    ========================================================= */
 
+/* Logo font (self-hosted, matches the Little Creative logo lettering) */
+@font-face {
+  font-family: 'Kaushan Script';
+  src: url('/fonts/kaushan-script-latin-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colour */
   --bg: #0c0a08;
@@ -19,6 +28,7 @@
   /* Type */
   --font-display: 'Cormorant Garamond', 'Noto Serif Tamil', Georgia, serif;
   --font-body: 'Manrope', 'Noto Sans Tamil', system-ui, -apple-system, sans-serif;
+  --font-logo: 'Kaushan Script', 'Brush Script MT', cursive;
 
   /* Layout */
   --container: 1240px;
@@ -437,4 +447,15 @@ html.lang-ta .btn {
   .reveal--clip .clip-inner > * {
     scale: 1;
   }
+}
+
+/* "Little Creative" wordmark — same brush lettering as the logo */
+.wordmark {
+  font-family: var(--font-logo);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  line-height: 1;
+  white-space: nowrap;
 }

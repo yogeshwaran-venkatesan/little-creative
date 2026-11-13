@@ -19,15 +19,19 @@ const OPEN_MS = 1100; // shutter curtains open
         <div class="curtain bottom"></div>
 
         <div class="center">
-          <svg class="aperture" viewBox="0 0 100 100">
-            <circle class="ring" cx="50" cy="50" r="44" />
-            <g class="blades">
-              @for (angle of blades; track angle) {
-                <path [attr.transform]="'rotate(' + angle + ' 50 50)'" d="M50 6 L72 44" />
-              }
-            </g>
-          </svg>
-          <p class="brand"><em>Little</em> <span>Creative</span></p>
+          <div class="lens">
+            <svg class="aperture" viewBox="0 0 100 100">
+              <circle class="ring" cx="50" cy="50" r="47" />
+              <g class="blades">
+                @for (angle of blades; track angle) {
+                  <path [attr.transform]="'rotate(' + angle + ' 50 50)'" d="M50 3 L64 27" />
+                }
+              </g>
+            </svg>
+            <!-- Logo appears as the aperture opens -->
+            <img class="logo" src="logo/little-creative-logo-256.png" alt="" width="96" height="96" />
+          </div>
+          <p class="brand">Little Creative</p>
         </div>
       </div>
     }
@@ -87,9 +91,33 @@ const OPEN_MS = 1100; // shutter curtains open
       transform: scale(1.3);
     }
 
+    .lens {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 150px;
+      height: 150px;
+    }
+
+    .logo {
+      position: absolute;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(201, 162, 107, 0.5);
+      animation: logo-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
+    }
+
+    @keyframes logo-in {
+      from {
+        opacity: 0;
+        transform: scale(0.4) rotate(-40deg);
+      }
+    }
+
     .aperture {
-      width: 86px;
-      height: 86px;
+      width: 150px;
+      height: 150px;
       fill: none;
       stroke: #c9a26b;
       stroke-width: 1.6;
@@ -98,8 +126,8 @@ const OPEN_MS = 1100; // shutter curtains open
     }
 
     .ring {
-      stroke-dasharray: 277;
-      stroke-dashoffset: 277;
+      stroke-dasharray: 296;
+      stroke-dashoffset: 296;
       animation: draw 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
 
@@ -125,31 +153,19 @@ const OPEN_MS = 1100; // shutter curtains open
     }
 
     .brand {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
       margin: 0;
+      font-family: 'Kaushan Script', 'Brush Script MT', cursive;
+      font-size: 38px;
+      line-height: 1;
       color: #f2ebe1;
       animation: brand-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
     }
 
-    .brand em {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 34px;
-      color: #e3c796;
-    }
 
-    .brand span {
-      font-family: 'Manrope', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.42em;
-      text-transform: uppercase;
-    }
 
     @keyframes brand-in {
       from {
         opacity: 0;
-        letter-spacing: 0.2em;
         transform: translateY(10px);
       }
     }

@@ -44,26 +44,49 @@
 /* ---------- Brand ---------- */
 .brand {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  align-items: center;
+  gap: 12px;
   white-space: nowrap;
 }
 
-.brand-mark {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 30px;
-  line-height: 1;
+/* Round logo badge with a thin gold ring */
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(201, 162, 107, 0.55),
+    0 6px 18px rgba(0, 0, 0, 0.45);
+  transition:
+    width 0.5s var(--ease),
+    height 0.5s var(--ease),
+    transform 0.8s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(-8deg) scale(1.06);
+  box-shadow:
+    0 0 0 2px var(--gold),
+    0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+.is-scrolled .brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-text {
+  font-size: 27px;
+  color: var(--text);
+  transition: color 0.4s var(--ease);
+}
+
+.brand:hover .brand-text {
   color: var(--gold-soft);
 }
 
-.brand-word {
-  font-family: 'Manrope', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-}
+
 
 /* ---------- Desktop nav ---------- */
 .desktop-nav {
@@ -271,16 +294,25 @@
 }
 
 @media (max-width: 600px) {
-  .brand-mark {
-    font-size: 26px;
-  }
 
-  .brand-word {
-    font-size: 11px;
-    letter-spacing: 0.3em;
-  }
 
   .lang-toggle {
     padding: 6px 10px;
+  }
+
+  .brand-text {
+    font-size: 22px;
+  }
+
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Very narrow phones: logo badge only (it already contains the name) */
+@media (max-width: 420px) {
+  .brand-text {
+    display: none;
   }
 }

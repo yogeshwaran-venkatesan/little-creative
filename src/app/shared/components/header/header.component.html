@@ -1,8 +1,8 @@
 <header class="site-header" [class.is-scrolled]="scrolled()" [class.menu-open]="menuOpen()">
   <div class="container header-inner">
     <a routerLink="/" class="brand" (click)="closeMenu()" [attr.aria-label]="site.brand">
-      <span class="brand-mark">Little</span>
-      <span class="brand-word">Creative</span>
+      <img class="brand-logo" src="logo/little-creative-logo-256.png" alt="" width="48" height="48" />
+      <span class="brand-text wordmark">Little Creative</span>
     </a>
 
     <nav class="desktop-nav" [attr.aria-label]="'nav.label' | translate">
