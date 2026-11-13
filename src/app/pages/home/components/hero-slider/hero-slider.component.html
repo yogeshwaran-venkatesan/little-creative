@@ -1,0 +1,78 @@
+<section
+  class="hero"
+  aria-roledescription="carousel"
+  [attr.aria-label]="'home.hero.label' | translate"
+  tabindex="-1"
+>
+  <!-- Background slides -->
+  <div class="slides">
+    @for (slide of slides; track slide.key; let i = $index) {
+      <div class="slide" [class.active]="i === current()" [attr.aria-hidden]="i !== current()">
+        <app-photo class="slide-photo" [photo]="slide.photo" sizes="100vw" [width]="2000" [eager]="i === 0" />
+      </div>
+    }
+    <div class="shade" aria-hidden="true"></div>
+  </div>
+
+  <!-- Text -->
+  <div class="container hero-content">
+    @for (slide of slides; track slide.key; let i = $index) {
+      @if (i === current()) {
+        <div class="hero-text" aria-live="polite">
+          <span class="eyebrow">{{ 'home.hero.slides.' + slide.key + '.eyebrow' | translate }}</span>
+          <h1 class="hero-title">{{ 'home.hero.slides.' + slide.key + '.title' | translate }}</h1>
+        </div>
+      }
+    }
+
+    <p class="hero-tagline">{{ 'brand.tagline' | translate }}</p>
+
+    <div class="hero-actions">
+      <a routerLink="/portfolio" class="btn btn-gold">{{ 'home.hero.viewPortfolio' | translate }}</a>
+      <a routerLink="/contact" class="btn btn-ghost">{{ 'header.bookShoot' | translate }}</a>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="container hero-controls">
+    <div class="counter" aria-hidden="true">
+      <span class="now">{{ pad(current() + 1) }}</span>
+      <span class="line"></span>
+      <span class="total">{{ pad(slides.length) }}</span>
+    </div>
+
+    <div class="dots">
+      @for (slide of slides; track slide.key; let i = $index) {
+        <button
+          type="button"
+          class="dot"
+          [class.active]="i === current()"
+          [attr.aria-label]="('home.hero.goTo' | translate) + ' ' + (i + 1)"
+          [attr.aria-current]="i === current()"
+          (click)="go(i)"
+        >
+          <span class="dot-fill"></span>
+        </button>
+      }
+    </div>
+
+    <div class="arrows">
+      <button type="button" class="arrow" (click)="prev()" [attr.aria-label]="'home.hero.prev' | translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" />
+        </svg>
+      </button>
+      <button type="button" class="arrow" (click)="next()" [attr.aria-label]="'home.hero.next' | translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <button type="button" class="scroll-cue" (click)="scrollDown()">
+    <span>{{ 'home.hero.scroll' | translate }}</span>
+    <span class="scroll-line" aria-hidden="true"></span>
+  </button>
+</section>

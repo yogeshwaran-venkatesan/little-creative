@@ -1,0 +1,180 @@
+<!-- ===================== HERO ===================== -->
+<app-hero-slider />
+
+<!-- ===================== INTRO ===================== -->
+<section id="intro" class="section intro">
+  <div class="container intro-grid">
+    <div class="intro-media" appReveal>
+      <div class="intro-main-wrap reveal--clip" appReveal>
+        <div class="clip-inner">
+          <app-photo class="intro-main" [photo]="photos.introMain" sizes="(max-width: 900px) 90vw, 45vw" />
+        </div>
+      </div>
+      <app-photo class="intro-detail" [photo]="photos.introDetail" sizes="(max-width: 900px) 50vw, 22vw" />
+      <span class="intro-badge" aria-hidden="true">Madurai</span>
+    </div>
+
+    <div class="intro-copy">
+      <span class="eyebrow" appReveal>{{ 'home.intro.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'home.intro.title' | translate"></h2>
+      <p class="intro-text" appReveal [revealDelay]="200">{{ 'home.intro.text1' | translate }}</p>
+      <p class="intro-text" appReveal [revealDelay]="280">{{ 'home.intro.text2' | translate }}</p>
+      <p class="signature" appReveal [revealDelay]="360">{{ 'home.intro.signature' | translate }}</p>
+      <div appReveal [revealDelay]="440">
+        <a routerLink="/about" class="btn btn-ghost">{{ 'home.intro.button' | translate }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section services">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" appReveal>{{ 'home.services.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'home.services.title' | translate"></h2>
+      <p class="section-lead" appReveal [revealDelay]="200">{{ 'home.services.lead' | translate }}</p>
+    </div>
+
+    <div class="service-grid">
+      @for (item of services; track item.key; let i = $index) {
+        <a
+          class="service-card"
+          data-cursor="explore"
+          routerLink="/services"
+          [fragment]="item.key"
+          appReveal
+          [revealDelay]="(i % 3) * 120"
+        >
+          <app-photo class="service-photo" [photo]="item.photo" sizes="(max-width: 600px) 92vw, (max-width: 960px) 46vw, 30vw" />
+          <div class="service-body">
+            <span class="service-num">{{ pad(i + 1) }}</span>
+            <h3 class="service-title">{{ 'home.services.items.' + item.key + '.title' | translate }}</h3>
+            <p class="service-text">{{ 'home.services.items.' + item.key + '.text' | translate }}</p>
+            <span class="service-link">
+              {{ 'home.services.explore' | translate }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="center-action" appReveal>
+      <a routerLink="/services" class="btn btn-ghost">{{ 'home.services.viewAll' | translate }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATIONS MARQUEE ===================== -->
+<section class="locations" [attr.aria-label]="'home.locations.eyebrow' | translate">
+  <div class="container">
+    <span class="eyebrow">{{ 'home.locations.eyebrow' | translate }}</span>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      @for (loc of marquee; track $index) {
+        <span class="marquee-item">{{ loc | translate }}</span>
+        <span class="marquee-star">✦</span>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED WORK ===================== -->
+<section class="section featured">
+  <div class="container">
+    <div class="featured-head">
+      <div class="section-head">
+        <span class="eyebrow" appReveal>{{ 'home.featured.eyebrow' | translate }}</span>
+        <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'home.featured.title' | translate"></h2>
+      </div>
+      <a routerLink="/portfolio" class="btn btn-ghost hide-sm" appReveal [revealDelay]="200">
+        {{ 'home.featured.button' | translate }}
+      </a>
+    </div>
+
+    <div class="featured-grid">
+      @for (item of featured; track item.photo.src; let i = $index) {
+        <a
+          class="featured-item reveal--clip"
+          [attr.data-size]="item.size"
+          data-cursor="view"
+          routerLink="/portfolio"
+          [queryParams]="{ category: item.category }"
+          appReveal
+          [revealDelay]="(i % 3) * 100"
+        >
+          <div class="clip-inner">
+            <app-photo [photo]="item.photo" sizes="(max-width: 700px) 92vw, 40vw" />
+          </div>
+          <span class="featured-tag">{{ 'categories.' + item.category | translate }}</span>
+        </a>
+      }
+    </div>
+
+    <div class="center-action show-sm">
+      <a routerLink="/portfolio" class="btn btn-ghost">{{ 'home.featured.button' | translate }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUOTE BAND ===================== -->
+<section class="quote-band">
+  <div class="quote-bg">
+    <app-photo [photo]="photos.quoteBand" sizes="100vw" [width]="2000" />
+  </div>
+  <div class="quote-shade" aria-hidden="true"></div>
+  <div class="container quote-content">
+    <p class="quote-text" appReveal>{{ 'home.quote.text' | translate }}</p>
+    <div class="quote-actions" appReveal [revealDelay]="150">
+      <a routerLink="/contact" class="btn btn-gold">{{ 'home.quote.button' | translate }}</a>
+      <a [href]="site.phoneHref" class="btn btn-ghost">{{ site.phoneDisplay }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section process">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" appReveal>{{ 'home.process.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'home.process.title' | translate"></h2>
+    </div>
+
+    <ol class="steps">
+      @for (step of steps; track step; let i = $index) {
+        <li class="step" appReveal [revealDelay]="i * 120">
+          <span class="step-num">{{ pad(i + 1) }}</span>
+          <h3 class="step-title">{{ 'home.process.steps.' + step + '.title' | translate }}</h3>
+          <p class="step-text">{{ 'home.process.steps.' + step + '.text' | translate }}</p>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS (shows only when real reviews are added) ===================== -->
+@if (reviews.length) {
+  <section class="section reviews">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow" appReveal>{{ 'home.reviews.eyebrow' | translate }}</span>
+        <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'home.reviews.title' | translate"></h2>
+      </div>
+      <div class="review-grid">
+        @for (review of reviews; track review.name; let i = $index) {
+          <figure class="review" appReveal [revealDelay]="i * 120">
+            <blockquote>{{ review.text }}</blockquote>
+            <figcaption>
+              <strong>{{ review.name }}</strong>
+              <span>{{ review.event }}</span>
+            </figcaption>
+          </figure>
+        }
+      </div>
+    </div>
+  </section>
+}

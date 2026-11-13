@@ -1,0 +1,188 @@
+:host {
+  display: block;
+}
+
+.site-footer {
+  position: relative;
+  padding-top: clamp(72px, 10vw, 130px);
+  background: linear-gradient(to bottom, var(--bg), var(--bg-elev));
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- CTA ---------- */
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding-bottom: clamp(64px, 9vw, 110px);
+  border-bottom: 1px solid var(--line);
+}
+
+.cta-title {
+  max-width: 820px;
+  font-size: clamp(38px, 6vw, 76px);
+  font-style: italic;
+  color: var(--text);
+}
+
+:host-context(html.lang-ta) .cta-title {
+  font-style: normal;
+  font-size: clamp(28px, 4.4vw, 50px);
+}
+
+.cta-text {
+  max-width: 520px;
+  color: var(--text-muted);
+  font-size: 17px;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+/* ---------- Columns ---------- */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+  gap: 48px;
+  padding-block: 72px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand-mark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 34px;
+  line-height: 1;
+  color: var(--gold-soft);
+}
+
+.brand-word {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+}
+
+.tagline {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gold);
+}
+
+:host-context(html.lang-ta) .tagline {
+  font-style: normal;
+  font-size: 16px;
+}
+
+.about {
+  margin-top: 14px;
+  max-width: 340px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.col-title {
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+:host-context(html.lang-ta) .col-title {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.col li {
+  display: flex;
+  flex-direction: column;
+}
+
+.col a {
+  width: fit-content;
+  color: var(--text);
+  background: linear-gradient(var(--gold), var(--gold)) no-repeat left bottom / 0 1px;
+  transition:
+    color 0.3s var(--ease),
+    background-size 0.5s var(--ease);
+}
+
+.col a:hover {
+  color: var(--gold-soft);
+  background-size: 100% 1px;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+:host-context(html.lang-ta) .label {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.locations li {
+  color: var(--text-muted);
+}
+
+/* ---------- Bottom bar ---------- */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 28px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---------- Breakpoints ---------- */
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .col-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,152 @@
+<app-page-hero
+  [photo]="banner"
+  eyebrowKey="about.hero.eyebrow"
+  titleKey="about.hero.title"
+  leadKey="about.hero.lead"
+/>
+
+<!-- ===================== STORY ===================== -->
+<section class="section story">
+  <div class="container story-grid">
+    <div class="story-media">
+      <div class="story-main reveal--clip" appReveal data-cursor="view">
+        <div class="clip-inner">
+          <app-photo [photo]="story" sizes="(max-width: 900px) 80vw, 38vw" [width]="1200" />
+        </div>
+      </div>
+      <div class="story-detail reveal--clip" appReveal [revealDelay]="250">
+        <div class="clip-inner">
+          <app-photo [photo]="storyDetail" sizes="(max-width: 900px) 45vw, 20vw" [width]="700" />
+        </div>
+      </div>
+      <!-- Rotating badge -->
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs>
+            <path id="badge-circle" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0" />
+          </defs>
+          <text>
+            <textPath href="#badge-circle">LITTLE CREATIVE · MADURAI · LITTLE CREATIVE · MADURAI ·</textPath>
+          </text>
+        </svg>
+        <span class="badge-core">✦</span>
+      </div>
+    </div>
+
+    <div class="story-copy">
+      <span class="eyebrow" appReveal>{{ 'about.story.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'about.story.title' | translate"></h2>
+      <p class="story-text lead-text" appReveal [revealDelay]="180">{{ 'about.story.p1' | translate }}</p>
+      <p class="story-text" appReveal [revealDelay]="260">{{ 'about.story.p2' | translate }}</p>
+      <p class="story-quote" appReveal [revealDelay]="340">{{ 'about.story.p3' | translate }}</p>
+
+      <!-- "At a glance" styled like a camera's shot-info screen -->
+      <dl class="glance" appReveal [revealDelay]="420">
+        <div class="glance-head" aria-hidden="true">
+          <span class="rec"></span>
+          <span>{{ 'about.glance.title' | translate }}</span>
+          <span class="glance-meta">ƒ/1.8 · 1/250 · ISO 200</span>
+        </div>
+        @for (g of glance; track g) {
+          <div class="glance-row">
+            <dt>{{ 'about.glance.' + g + '.label' | translate }}</dt>
+            <dd>{{ 'about.glance.' + g + '.value' | translate }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILM STRIP ===================== -->
+<section class="film" [attr.aria-label]="'about.film.eyebrow' | translate">
+  <div class="container film-head">
+    <span class="eyebrow">{{ 'about.film.eyebrow' | translate }}</span>
+    <a routerLink="/portfolio" class="film-link">
+      {{ 'home.featured.button' | translate }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="film-roll" aria-hidden="true">
+    <div class="film-track">
+      @for (item of filmStrip; track $index; let i = $index) {
+        <a class="frame" routerLink="/portfolio" [queryParams]="{ category: item.category }" data-cursor="view" tabindex="-1">
+          <app-photo [photo]="item.photo" sizes="280px" [width]="600" />
+          <span class="frame-num">{{ pad((i % 12) + 1) }}A</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VALUES ===================== -->
+<section class="section values">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" appReveal>{{ 'about.values.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'about.values.title' | translate"></h2>
+    </div>
+
+    <div class="value-grid">
+      @for (v of values; track v; let i = $index) {
+        <article class="value" appReveal [revealDelay]="i * 130">
+          <span class="value-icon" aria-hidden="true">
+            @switch (v) {
+              @case ('natural') {
+                <!-- heart / emotion -->
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <path d="M24 40s-14-8.6-14-19a8 8 0 0 1 14-5.3A8 8 0 0 1 38 21c0 10.4-14 19-14 19Z" />
+                </svg>
+              }
+              @case ('light') {
+                <!-- aperture -->
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <circle cx="24" cy="24" r="17" />
+                  <path d="M24 7l8 14M41 24l-16 0.5M32.5 38.7L24.5 25M15.5 38.7l8-14M7 24h16.5M15.5 9.3l8 14" />
+                </svg>
+              }
+              @case ('care') {
+                <!-- camera -->
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+                  <rect x="6" y="14" width="36" height="25" rx="4" />
+                  <path d="M17 14l3-5h8l3 5" />
+                  <circle cx="24" cy="26.5" r="7" />
+                </svg>
+              }
+            }
+          </span>
+          <span class="value-num">{{ pad(i + 1) }}</span>
+          <h3 class="value-title">{{ 'about.values.items.' + v + '.title' | translate }}</h3>
+          <p class="value-text">{{ 'about.values.items.' + v + '.text' | translate }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATIONS ===================== -->
+<section class="section places">
+  <div class="container places-grid">
+    <div class="section-head">
+      <span class="eyebrow" appReveal>{{ 'about.places.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'about.places.title' | translate"></h2>
+      <p class="section-lead" appReveal [revealDelay]="200">{{ 'about.places.lead' | translate }}</p>
+    </div>
+
+    <ol class="place-list">
+      @for (loc of locations; track loc; let i = $index) {
+        <li class="place" appReveal [revealDelay]="i * 70">
+          <span class="place-num">{{ pad(i + 1) }}</span>
+          <span class="place-name">{{ loc | translate }}</span>
+          <svg class="place-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+            <path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21Z" />
+            <circle cx="12" cy="9.8" r="2.3" />
+          </svg>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

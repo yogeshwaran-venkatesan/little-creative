@@ -1,0 +1,97 @@
+<app-page-hero
+  [photo]="banner"
+  eyebrowKey="portfolio.hero.eyebrow"
+  titleKey="portfolio.hero.title"
+  leadKey="portfolio.hero.lead"
+/>
+
+<section class="section gallery-section">
+  <div class="container">
+    <!-- Filters -->
+    <div class="filters-wrap" appReveal>
+      <div class="filters" role="tablist" [attr.aria-label]="'portfolio.filters.label' | translate">
+        <span
+          class="indicator"
+          aria-hidden="true"
+          [style.width.px]="indicator().width"
+          [style.transform]="'translateX(' + indicator().left + 'px)'"
+        ></span>
+
+        @for (f of filters; track f) {
+          <button
+            #filterBtn
+            type="button"
+            role="tab"
+            class="filter"
+            [class.active]="f === active()"
+            [attr.aria-selected]="f === active()"
+            (click)="select(f)"
+          >
+            {{ (f === 'all' ? 'portfolio.filters.all' : 'categories.' + f) | translate }}
+            <sup class="count">{{ counts[f] }}</sup>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Gallery: re-rendered per filter so tiles animate in fresh -->
+    @for (key of [active()]; track key) {
+      <div class="masonry" role="tabpanel">
+        @for (item of visible(); track item.photo.src; let i = $index) {
+          <button
+            type="button"
+            class="tile reveal--clip"
+            appReveal
+            [revealDelay]="(i % 3) * 110"
+            data-cursor="view"
+            (click)="open(i)"
+            [attr.aria-label]="('portfolio.view' | translate) + ': ' + item.photo.alt"
+          >
+            <div class="clip-inner">
+              <app-photo
+                class="tile-photo"
+                [photo]="item.photo"
+                [style.aspect-ratio]="item.ratio"
+                [width]="1000"
+                sizes="(max-width: 600px) 92vw, (max-width: 1000px) 46vw, 32vw"
+              />
+            </div>
+
+            <!-- Viewfinder frame on hover -->
+            <span class="vf vf-tl" aria-hidden="true"></span>
+            <span class="vf vf-tr" aria-hidden="true"></span>
+            <span class="vf vf-bl" aria-hidden="true"></span>
+            <span class="vf vf-br" aria-hidden="true"></span>
+            <span class="focus-dot" aria-hidden="true"></span>
+
+            <span class="tile-meta" aria-hidden="true">
+              <span class="tile-num">{{ pad(i + 1) }}</span>
+              <span class="tile-cat">{{ 'categories.' + item.category | translate }}</span>
+            </span>
+          </button>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Instagram -->
+<section class="insta">
+  <div class="container insta-inner" appReveal>
+    <div>
+      <span class="eyebrow">{{ site.instagramHandle }}</span>
+      <h2 class="insta-title">{{ 'portfolio.instagram.title' | translate }}</h2>
+      <p class="insta-text">{{ 'portfolio.instagram.text' | translate }}</p>
+    </div>
+    <a [href]="site.instagramHref" target="_blank" rel="noopener" class="btn btn-gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+      </svg>
+      {{ 'portfolio.instagram.button' | translate }}
+    </a>
+  </div>
+</section>
+
+<app-lightbox [items]="visible()" [(index)]="lightboxIndex" />

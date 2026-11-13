@@ -1,0 +1,72 @@
+<footer class="site-footer">
+  <div class="container">
+    <!-- Call to action -->
+    <div class="footer-cta" appReveal>
+      <h2 class="cta-title">{{ 'footer.ctaTitle' | translate }}</h2>
+      <p class="cta-text">{{ 'footer.ctaText' | translate }}</p>
+      <div class="cta-actions">
+        <a routerLink="/contact" class="btn btn-gold">{{ 'footer.ctaButton' | translate }}</a>
+        <a [href]="site.whatsappHref" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5Z" />
+          </svg>
+          {{ 'footer.whatsapp' | translate }}
+        </a>
+      </div>
+    </div>
+
+    <!-- Columns -->
+    <div class="footer-grid">
+      <div class="col col-brand">
+        <a routerLink="/" class="brand" [attr.aria-label]="site.brand">
+          <span class="brand-mark">Little</span>
+          <span class="brand-word">Creative</span>
+        </a>
+        <p class="tagline">{{ 'brand.tagline' | translate }}</p>
+        <p class="about">{{ 'footer.about' | translate }}</p>
+      </div>
+
+      <div class="col">
+        <h3 class="col-title">{{ 'footer.quickLinks' | translate }}</h3>
+        <ul>
+          @for (link of links; track link.path) {
+            <li><a [routerLink]="link.path">{{ link.key | translate }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div class="col">
+        <h3 class="col-title">{{ 'footer.getInTouch' | translate }}</h3>
+        <ul>
+          <li>
+            <span class="label">{{ 'footer.call' | translate }}</span>
+            <a [href]="site.phoneHref">{{ site.phoneDisplay }}</a>
+          </li>
+          <li>
+            <span class="label">{{ 'footer.whatsapp' | translate }}</span>
+            <a [href]="site.whatsappHref" target="_blank" rel="noopener">{{ site.phoneDisplay }}</a>
+          </li>
+          <li>
+            <span class="label">{{ 'footer.instagram' | translate }}</span>
+            <a [href]="site.instagramHref" target="_blank" rel="noopener">{{ site.instagramHandle }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h3 class="col-title">{{ 'footer.shootLocations' | translate }}</h3>
+        <ul class="locations">
+          @for (loc of locations; track loc) {
+            <li>{{ loc | translate }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p>© {{ year }} {{ site.brand }}. {{ 'footer.rights' | translate }}</p>
+      <p>{{ 'footer.basedIn' | translate }}</p>
+    </div>
+  </div>
+</footer>

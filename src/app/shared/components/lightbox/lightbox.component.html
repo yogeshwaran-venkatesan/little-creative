@@ -1,0 +1,86 @@
+@if (current(); as item) {
+  <div
+    #dialog
+    class="lb"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="'lightbox.label' | translate"
+    (pointerdown)="onPointerDown($event)"
+    (pointerup)="onPointerUp($event)"
+  >
+    <!-- Camera flash on open -->
+    <div class="flash" aria-hidden="true"></div>
+
+    <!-- Top bar -->
+    <div class="lb-top">
+      <div class="lb-meta">
+        <span class="lb-count">
+          <strong>{{ pad((index() ?? 0) + 1) }}</strong>
+          <span class="slash">/</span>
+          {{ pad(items().length) }}
+        </span>
+        <span class="lb-cat">{{ 'categories.' + item.category | translate }}</span>
+      </div>
+      <button #closeBtn type="button" class="lb-btn lb-close" (click)="close()" [attr.aria-label]="'lightbox.close' | translate">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Stage -->
+    <div class="lb-stage" (click)="onStageClick($event)">
+      @for (photo of [item]; track photo.photo.src) {
+        <figure class="lb-figure" [class.from-prev]="direction() === 'prev'">
+          <!-- Viewfinder corners -->
+          <span class="vf vf-tl" aria-hidden="true"></span>
+          <span class="vf vf-tr" aria-hidden="true"></span>
+          <span class="vf vf-bl" aria-hidden="true"></span>
+          <span class="vf vf-br" aria-hidden="true"></span>
+
+          <img
+            [src]="src(photo)"
+            [alt]="photo.photo.alt"
+            [class.loaded]="loaded()"
+            (load)="loaded.set(true)"
+            draggable="false"
+          />
+        </figure>
+      }
+
+      @if (!loaded()) {
+        <div class="lb-spinner" aria-hidden="true">
+          <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" /></svg>
+        </div>
+      }
+    </div>
+
+    <!-- Arrows -->
+    <button type="button" class="lb-btn lb-arrow lb-prev" (click)="prev()" [attr.aria-label]="'lightbox.prev' | translate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" />
+      </svg>
+    </button>
+    <button type="button" class="lb-btn lb-arrow lb-next" (click)="next()" [attr.aria-label]="'lightbox.next' | translate">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+
+    <!-- Film strip -->
+    <div #strip class="lb-strip" aria-hidden="true">
+      @for (thumb of items(); track thumb.photo.src; let i = $index) {
+        <button
+          type="button"
+          tabindex="-1"
+          class="thumb"
+          [attr.data-i]="i"
+          [class.active]="i === index()"
+          (click)="goTo(i)"
+        >
+          <img [src]="src(thumb, 200)" alt="" loading="lazy" draggable="false" />
+        </button>
+      }
+    </div>
+  </div>
+}

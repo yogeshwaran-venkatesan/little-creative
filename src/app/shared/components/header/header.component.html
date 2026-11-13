@@ -1,0 +1,77 @@
+<header class="site-header" [class.is-scrolled]="scrolled()" [class.menu-open]="menuOpen()">
+  <div class="container header-inner">
+    <a routerLink="/" class="brand" (click)="closeMenu()" [attr.aria-label]="site.brand">
+      <span class="brand-mark">Little</span>
+      <span class="brand-word">Creative</span>
+    </a>
+
+    <nav class="desktop-nav" [attr.aria-label]="'nav.label' | translate">
+      @for (link of links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+        >
+          {{ link.key | translate }}
+        </a>
+      }
+    </nav>
+
+    <div class="header-actions">
+      <button
+        type="button"
+        class="lang-toggle"
+        (click)="lang.toggle()"
+        [attr.aria-label]="'header.switchLanguage' | translate"
+      >
+        <span [class.on]="lang.current() === 'en'">EN</span>
+        <span class="sep" aria-hidden="true">/</span>
+        <span class="ta" [class.on]="lang.current() === 'ta'">தமிழ்</span>
+      </button>
+
+      <a routerLink="/contact" class="btn btn-gold btn-sm book-btn">
+        {{ 'header.bookShoot' | translate }}
+      </a>
+
+      <button
+        type="button"
+        class="menu-btn"
+        (click)="toggleMenu()"
+        aria-controls="mobile-menu"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="(menuOpen() ? 'header.closeMenu' : 'header.openMenu') | translate"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Kept outside <header> so its position:fixed is relative to the viewport,
+     not the blurred header (backdrop-filter creates a containing block). -->
+<div id="mobile-menu" class="mobile-menu" [class.open]="menuOpen()" [attr.aria-hidden]="!menuOpen()">
+  <nav class="container" [attr.aria-label]="'nav.label' | translate">
+    @for (link of links; track link.path; let i = $index) {
+      <a
+        [routerLink]="link.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: link.exact }"
+        [style.--i]="i"
+        [attr.tabindex]="menuOpen() ? 0 : -1"
+      >
+        {{ link.key | translate }}
+      </a>
+    }
+  </nav>
+
+  <div class="container mobile-contact">
+    <a [href]="site.phoneHref" [attr.tabindex]="menuOpen() ? 0 : -1">{{ site.phoneDisplay }}</a>
+    <a [href]="site.whatsappHref" target="_blank" rel="noopener" [attr.tabindex]="menuOpen() ? 0 : -1">
+      {{ 'footer.whatsapp' | translate }}
+    </a>
+    <a [href]="site.instagramHref" target="_blank" rel="noopener" [attr.tabindex]="menuOpen() ? 0 : -1">
+      {{ site.instagramHandle }}
+    </a>
+  </div>
+</div>

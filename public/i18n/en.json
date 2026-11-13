@@ -1,0 +1,413 @@
+{
+  "brand": {
+    "tagline": "An Ideal Paradise to Capture Your Happiness"
+  },
+  "common": {
+    "skipToContent": "Skip to main content",
+    "whatsappChat": "Chat on WhatsApp"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "header": {
+    "bookShoot": "Book a Shoot",
+    "switchLanguage": "Switch language between English and Tamil",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "ctaTitle": "Let's create something timeless",
+    "ctaText": "Tell us about your special day — we'll take care of the rest.",
+    "ctaButton": "Book Your Shoot",
+    "about": "Little Creative is a Madurai-based photography studio capturing weddings, couples, babies and families — every frame told with feeling.",
+    "quickLinks": "Quick Links",
+    "getInTouch": "Get in Touch",
+    "shootLocations": "Shoot Locations",
+    "call": "Call",
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "rights": "All rights reserved.",
+    "basedIn": "Based in Madurai · Shooting across Tamil Nadu"
+  },
+  "locations": {
+    "kodaikanal": "Kodaikanal",
+    "pollachi": "Pollachi",
+    "poombarai": "Poombarai",
+    "sayalkudi": "Sayalkudi Beach",
+    "sivagangai": "Sivagangai",
+    "singampunari": "Singampunari",
+    "tiruppur": "Tiruppur"
+  },
+  "categories": {
+    "wedding": "Wedding",
+    "couple": "Couple",
+    "baby": "Baby",
+    "family": "Family",
+    "portrait": "Portrait",
+    "events": "Events"
+  },
+  "home": {
+    "hero": {
+      "label": "Featured photography",
+      "prev": "Previous slide",
+      "next": "Next slide",
+      "goTo": "Go to slide",
+      "viewPortfolio": "View Portfolio",
+      "scroll": "Scroll",
+      "slides": {
+        "wedding": {
+          "eyebrow": "Wedding Photography",
+          "title": "Your forever, framed beautifully"
+        },
+        "couple": {
+          "eyebrow": "Couple & Pre-Wedding",
+          "title": "Love stories told in golden light"
+        },
+        "family": {
+          "eyebrow": "Family & Kids",
+          "title": "Little moments, lifelong memories"
+        }
+      }
+    },
+    "intro": {
+      "eyebrow": "Welcome to Little Creative",
+      "title": "An ideal paradise to <em>capture your happiness</em>",
+      "text1": "From the first glance at a wedding to a baby's first smile, we photograph the moments that matter most — naturally, honestly and with a cinematic eye.",
+      "text2": "Based in Madurai, we travel across Tamil Nadu — from the hills of Kodaikanal to the shores of Sayalkudi — to tell your story wherever it happens.",
+      "signature": "— Team Little Creative",
+      "button": "Our Story"
+    },
+    "services": {
+      "eyebrow": "What We Capture",
+      "title": "Every celebration, <em>beautifully told</em>",
+      "lead": "Weddings, couples, little ones and all your special events — photographed with care.",
+      "explore": "Explore",
+      "viewAll": "View Services & Packages",
+      "items": {
+        "wedding": {
+          "title": "Wedding",
+          "text": "Rituals, emotions and every candid moment of your big day."
+        },
+        "couple": {
+          "title": "Couple & Pre-Wedding",
+          "text": "Cinematic outdoor shoots in your favourite locations."
+        },
+        "baby": {
+          "title": "Baby & Kids",
+          "text": "Gentle, playful sessions for your little ones."
+        },
+        "family": {
+          "title": "Family",
+          "text": "Warm portraits of the people who matter most."
+        },
+        "portrait": {
+          "title": "Portraits",
+          "text": "Personal and professional portraits with character."
+        },
+        "events": {
+          "title": "All Events",
+          "text": "Birthdays, functions and celebrations of every kind."
+        }
+      }
+    },
+    "locations": {
+      "eyebrow": "Where We Shoot"
+    },
+    "featured": {
+      "eyebrow": "Selected Work",
+      "title": "Moments we <em>love</em>",
+      "button": "View Full Portfolio"
+    },
+    "quote": {
+      "text": "Every love story deserves to be told beautifully.",
+      "button": "Plan Your Shoot"
+    },
+    "process": {
+      "eyebrow": "How It Works",
+      "title": "Simple, from <em>hello</em> to album",
+      "steps": {
+        "enquire": {
+          "title": "Enquire",
+          "text": "Call or WhatsApp us with your date and event details."
+        },
+        "plan": {
+          "title": "Plan",
+          "text": "We discuss your ideas, locations and the look you love."
+        },
+        "shoot": {
+          "title": "Shoot",
+          "text": "We capture every moment while you enjoy your day."
+        },
+        "deliver": {
+          "title": "Deliver",
+          "text": "Edited photos delivered, ready to share and treasure."
+        }
+      }
+    },
+    "reviews": {
+      "eyebrow": "Kind Words",
+      "title": "What our clients <em>say</em>"
+    }
+  },
+  "cursor": {
+    "view": "View",
+    "explore": "Explore",
+    "drag": "Drag"
+  },
+  "lightbox": {
+    "label": "Photo viewer",
+    "close": "Close",
+    "prev": "Previous photo",
+    "next": "Next photo"
+  },
+  "portfolio": {
+    "hero": {
+      "eyebrow": "Portfolio",
+      "title": "Stories we've had the <em>honour</em> to tell",
+      "lead": "A glimpse of the weddings, couples, little ones and celebrations we've captured."
+    },
+    "filters": {
+      "label": "Filter photos by category",
+      "all": "All"
+    },
+    "view": "View photo",
+    "instagram": {
+      "title": "See our latest work on Instagram",
+      "text": "New shoots are posted regularly — follow along.",
+      "button": "Follow on Instagram"
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Services",
+      "title": "Every moment, <em>beautifully kept</em>",
+      "lead": "From weddings to first birthdays — photography crafted around your story."
+    },
+    "jumpTo": "Jump to a service",
+    "enquire": "Enquire Now",
+    "seeWork": "See the work",
+    "items": {
+      "wedding": {
+        "title": "Wedding Photography",
+        "text": "From the muhurtham to the reception, we capture every ritual, every tear and every laugh — the grand moments and the quiet ones in between.",
+        "features": {
+          "f1": "Traditional & candid coverage",
+          "f2": "Muhurtham, rituals & reception",
+          "f3": "Family and group portraits"
+        }
+      },
+      "couple": {
+        "title": "Couple & Pre-Wedding",
+        "text": "Relaxed outdoor sessions in the hills, by the sea or in the city — cinematic frames that feel just like you.",
+        "features": {
+          "f1": "Location planning",
+          "f2": "Golden-hour outdoor shoots",
+          "f3": "Outfit & pose guidance"
+        }
+      },
+      "baby": {
+        "title": "Baby & Kids",
+        "text": "Patient, gentle sessions that follow your little one's mood — first smiles, tiny details and big milestones.",
+        "features": {
+          "f1": "Newborn & baby sessions",
+          "f2": "Birthday & milestone shoots",
+          "f3": "Calm, relaxed pace"
+        }
+      },
+      "family": {
+        "title": "Family Portraits",
+        "text": "Natural portraits of your family together — at home, outdoors or at your special celebrations.",
+        "features": {
+          "f1": "Home or outdoor sessions",
+          "f2": "Generational portraits",
+          "f3": "Festival & occasion portraits"
+        }
+      },
+      "portrait": {
+        "title": "Portraits",
+        "text": "Personal, professional and traditional portraits with thoughtful light and gentle direction.",
+        "features": {
+          "f1": "Personal & profile portraits",
+          "f2": "Traditional attire shoots",
+          "f3": "Styled creative sessions"
+        }
+      },
+      "events": {
+        "title": "All Events",
+        "text": "Engagements, birthdays, puberty functions, housewarmings and more — every celebration captured with care.",
+        "features": {
+          "f1": "Engagements & receptions",
+          "f2": "Birthdays & family functions",
+          "f3": "Any celebration, big or small"
+        }
+      }
+    },
+    "packages": {
+      "eyebrow": "Packages",
+      "title": "Choose your <em>story</em>",
+      "lead": "Three ways to work with us — every package can be tailored to your event.",
+      "featured": "Signature choice",
+      "onRequest": "Price on request",
+      "cta": "Enquire about this",
+      "note": "Sample packages shown for preview — final packages and pricing are confirmed on enquiry.",
+      "items": {
+        "essential": {
+          "name": "Essential",
+          "for": "Intimate events & short sessions",
+          "features": {
+            "f1": "Single photographer",
+            "f2": "Event or session coverage",
+            "f3": "Professionally edited photos",
+            "f4": "Digital delivery"
+          }
+        },
+        "signature": {
+          "name": "Signature",
+          "for": "Weddings & full-day celebrations",
+          "features": {
+            "f1": "Lead photographer + assistant",
+            "f2": "Full-day coverage",
+            "f3": "Traditional + candid photography",
+            "f4": "Professionally edited photos",
+            "f5": "Pre-shoot planning call"
+          }
+        },
+        "premium": {
+          "name": "Premium",
+          "for": "The complete wedding story",
+          "features": {
+            "f1": "Photography team",
+            "f2": "Multi-day coverage",
+            "f3": "Pre-wedding outdoor shoot",
+            "f4": "Traditional + candid photography",
+            "f5": "Premium printed album",
+            "f6": "Priority editing & delivery"
+          }
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Good to <em>know</em>",
+      "items": {
+        "book": {
+          "q": "How do I book a shoot?",
+          "a": "Call or WhatsApp us with your event date, type and location. We'll confirm availability and plan the details together."
+        },
+        "travel": {
+          "q": "Do you shoot outside Madurai?",
+          "a": "Yes — we travel across Tamil Nadu, from Kodaikanal and Poombarai to Pollachi, Tiruppur and Sayalkudi beach."
+        },
+        "when": {
+          "q": "How early should we book?",
+          "a": "As early as you can — popular wedding and festival dates fill up quickly."
+        },
+        "prepare": {
+          "q": "How do we prepare for the shoot?",
+          "a": "We'll guide you on outfits, locations and timing while planning, so you can simply relax and enjoy the day."
+        }
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About Us",
+      "title": "We don't just take photos — <em>we keep memories</em>",
+      "lead": "A Madurai photography studio for weddings, couples, families and every celebration."
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "Built on <em>happiness</em>",
+      "p1": "Little Creative began with a simple belief: the happiest moments of life deserve to be captured honestly and beautifully.",
+      "p2": "Today we photograph weddings, couples, babies, families and events across Tamil Nadu — always with the same care, patience and eye for light.",
+      "p3": "Our promise is in our words: an ideal paradise to capture your happiness."
+    },
+    "glance": {
+      "title": "At a glance",
+      "base": {
+        "label": "Base",
+        "value": "Madurai, Tamil Nadu"
+      },
+      "specialty": {
+        "label": "Specialty",
+        "value": "Weddings · Couples · Babies · Families"
+      },
+      "coverage": {
+        "label": "Coverage",
+        "value": "All events, big or small"
+      },
+      "travel": {
+        "label": "Travel",
+        "value": "Across Tamil Nadu"
+      }
+    },
+    "film": {
+      "eyebrow": "From Our Lens"
+    },
+    "values": {
+      "eyebrow": "Our Approach",
+      "title": "What makes every frame <em>ours</em>",
+      "items": {
+        "natural": {
+          "title": "Natural moments",
+          "text": "We let real emotions unfold and capture them as they happen — no stiff poses, just you."
+        },
+        "light": {
+          "title": "Cinematic light",
+          "text": "Warm tones, rich shadows and golden-hour glow give every photo a timeless feel."
+        },
+        "care": {
+          "title": "Personal care",
+          "text": "We listen first, plan together and stay with you from the first call to the final photo."
+        }
+      }
+    },
+    "places": {
+      "eyebrow": "Where We've Shot",
+      "title": "Stories across <em>Tamil Nadu</em>",
+      "lead": "Hills, beaches, temples and home towns — we go wherever your story is."
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Let's tell <em>your story</em>",
+      "lead": "Share your date and plans — we'll get back to you on WhatsApp or by phone."
+    },
+    "info": {
+      "eyebrow": "Get in Touch",
+      "title": "We'd love to <em>hear from you</em>",
+      "studio": "Studio",
+      "studioValue": "Madurai, Tamil Nadu"
+    },
+    "form": {
+      "title": "Send an enquiry",
+      "name": "Your name",
+      "phone": "Mobile number",
+      "eventType": "Event type",
+      "eventTypePlaceholder": "Select event type",
+      "date": "Event date",
+      "location": "Event location",
+      "message": "Tell us about your plans",
+      "submit": "Send on WhatsApp",
+      "note": "Your enquiry opens in WhatsApp, ready to send.",
+      "packagePrefill": "I'm interested in the {{name}} package.",
+      "errors": {
+        "required": "This field is required",
+        "phone": "Enter a valid 10-digit mobile number"
+      },
+      "successTitle": "Almost there!",
+      "successText": "WhatsApp has opened with your enquiry — just tap send and we'll reply soon.",
+      "another": "Send another enquiry"
+    },
+    "whatsapp": {
+      "greeting": "Hi Little Creative! I'd like to enquire about a shoot."
+    },
+    "map": "Map showing Madurai, Tamil Nadu"
+  }
+}

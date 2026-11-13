@@ -1,0 +1,286 @@
+:host {
+  display: block;
+}
+
+/* ---------- Bar ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.5s var(--ease),
+    border-color 0.5s var(--ease),
+    backdrop-filter 0.5s var(--ease);
+}
+
+.site-header.is-scrolled {
+  background: rgba(12, 10, 8, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--line);
+}
+
+.site-header.menu-open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+
+.header-inner {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transition: height 0.5s var(--ease);
+}
+
+.is-scrolled .header-inner {
+  height: calc(var(--header-h) - 14px);
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.brand-mark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--gold-soft);
+}
+
+.brand-word {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+}
+
+/* ---------- Desktop nav ---------- */
+.desktop-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.desktop-nav a {
+  position: relative;
+  padding-block: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color 0.3s var(--ease);
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease);
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  color: var(--text);
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+:host-context(html.lang-ta) .desktop-nav {
+  gap: 28px;
+}
+
+:host-context(html.lang-ta) .desktop-nav a {
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ---------- Actions ---------- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  transition: border-color 0.3s var(--ease);
+}
+
+.lang-toggle:hover {
+  border-color: var(--gold);
+}
+
+.lang-toggle .ta {
+  font-family: 'Noto Sans Tamil', sans-serif;
+  letter-spacing: 0;
+}
+
+.lang-toggle .on {
+  color: var(--gold-soft);
+}
+
+.lang-toggle .sep {
+  opacity: 0.4;
+}
+
+/* ---------- Burger ---------- */
+.menu-btn {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.menu-btn span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 1.5px;
+  background: var(--text);
+  transition:
+    transform 0.5s var(--ease),
+    top 0.5s var(--ease);
+}
+
+.menu-btn span:first-child {
+  top: 18px;
+}
+
+.menu-btn span:last-child {
+  top: 26px;
+}
+
+.menu-open .menu-btn span:first-child {
+  top: 22px;
+  transform: rotate(45deg);
+}
+
+.menu-open .menu-btn span:last-child {
+  top: 22px;
+  transform: rotate(-45deg);
+}
+
+/* ---------- Mobile overlay ---------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: calc(var(--header-h) + 24px) 40px;
+  background: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s var(--ease),
+    visibility 0s linear 0.5s;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s var(--ease);
+}
+
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-menu nav a {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 9vw, 48px);
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease),
+    color 0.3s var(--ease);
+}
+
+.mobile-menu.open nav a {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+
+.mobile-menu nav a.active {
+  color: var(--gold-soft);
+}
+
+:host-context(html.lang-ta) .mobile-menu nav a {
+  font-size: clamp(26px, 7vw, 36px);
+}
+
+.mobile-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 48px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.mobile-contact a:hover {
+  color: var(--gold-soft);
+}
+
+/* ---------- Breakpoints ---------- */
+@media (max-width: 1020px) {
+  .desktop-nav,
+  .book-btn {
+    display: none;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-mark {
+    font-size: 26px;
+  }
+
+  .brand-word {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+  }
+
+  .lang-toggle {
+    padding: 6px 10px;
+  }
+}

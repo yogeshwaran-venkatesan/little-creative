@@ -1,0 +1,306 @@
+:host {
+  display: block;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  outline: none;
+}
+
+/* ---------- Slides ---------- */
+.slides {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-in-out);
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide-photo {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.12);
+}
+
+/* Slow Ken Burns zoom while a slide is active */
+.slide.active .slide-photo {
+  animation: ken-burns calc(var(--slide-ms) + 2000ms) linear both;
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to top, rgba(12, 10, 8, 0.92) 0%, rgba(12, 10, 8, 0.35) 45%, rgba(12, 10, 8, 0.55) 100%),
+    radial-gradient(ellipse at 30% 70%, transparent 0%, rgba(12, 10, 8, 0.4) 70%);
+}
+
+/* ---------- Text ---------- */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding-bottom: clamp(120px, 16vh, 170px);
+}
+
+.hero-text {
+  max-width: 860px;
+}
+
+.hero-text .eyebrow {
+  animation: rise 1s var(--ease) 0.2s both;
+}
+
+.hero-title {
+  margin-top: 22px;
+  font-size: clamp(44px, 7.4vw, 104px);
+  line-height: 1.02;
+  font-weight: 400;
+  animation: rise 1.2s var(--ease) 0.35s both;
+}
+
+:host-context(html.lang-ta) .hero-title {
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.3;
+}
+
+.hero-tagline {
+  margin-top: 24px;
+  max-width: 520px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--gold-soft);
+  animation: rise 1.2s var(--ease) 0.6s both;
+}
+
+:host-context(html.lang-ta) .hero-tagline {
+  font-style: normal;
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+  animation: rise 1.2s var(--ease) 0.8s both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+/* ---------- Controls ---------- */
+.hero-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-inline: auto;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+}
+
+.counter .line {
+  width: 36px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.counter .total {
+  color: var(--text-muted);
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  position: relative;
+  width: 56px;
+  height: 20px;
+}
+
+.dot::before,
+.dot-fill {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.dot::before {
+  background: rgba(242, 235, 225, 0.22);
+}
+
+.dot-fill {
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.dot.active .dot-fill {
+  animation: progress var(--slide-ms) linear both;
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.arrows {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  transition:
+    border-color 0.3s var(--ease),
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease);
+}
+
+.arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.arrow:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ---------- Scroll cue ---------- */
+.scroll-cue {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 120px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+}
+
+:host-context(html.lang-ta) .scroll-cue {
+  letter-spacing: 0.04em;
+}
+
+.scroll-line {
+  position: relative;
+  width: 1px;
+  height: 64px;
+  overflow: hidden;
+  background: var(--line-strong);
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  animation: scroll-drip 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-drip {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* ---------- Breakpoints ---------- */
+@media (max-width: 900px) {
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-controls {
+    bottom: 28px;
+    gap: 18px;
+    /* keep the arrows clear of the floating WhatsApp button */
+    padding-right: calc(var(--gutter) + 72px);
+  }
+
+  .counter {
+    display: none;
+  }
+
+  .dot {
+    width: 36px;
+  }
+
+  .arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .hero-content {
+    padding-bottom: 110px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 auto;
+  }
+}

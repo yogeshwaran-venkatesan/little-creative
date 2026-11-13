@@ -1,0 +1,14 @@
+<section class="page-hero">
+  <div class="bg">
+    <app-photo [photo]="photo()" sizes="100vw" [width]="2000" [eager]="true" />
+  </div>
+  <div class="shade" aria-hidden="true"></div>
+
+  <div class="container content">
+    <span class="eyebrow">{{ eyebrowKey() | translate }}</span>
+    <h1 class="title" [innerHTML]="titleKey() | translate"></h1>
+    @if (leadKey(); as lead) {
+      <p class="lead">{{ lead | translate }}</p>
+    }
+  </div>
+</section>

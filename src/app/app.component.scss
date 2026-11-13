@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+main {
+  display: block;
+  min-height: 100vh;
+}
+
+/* ---------- Floating WhatsApp button ---------- */
+.whatsapp-fab {
+  position: fixed;
+  right: clamp(16px, 3vw, 32px);
+  bottom: clamp(16px, 3vw, 32px);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #17120c;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  transition:
+    gap 0.5s var(--ease),
+    background-color 0.3s var(--ease),
+    transform 0.5s var(--ease);
+  animation: fab-in 0.8s var(--ease) 1.2s both;
+}
+
+.whatsapp-fab svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.fab-label {
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  transition: max-width 0.5s var(--ease);
+}
+
+.whatsapp-fab:hover {
+  gap: 10px;
+  background: var(--gold-soft);
+  transform: translateY(-2px);
+}
+
+.whatsapp-fab:hover .fab-label,
+.whatsapp-fab:focus-visible .fab-label {
+  max-width: 220px;
+}
+
+@keyframes fab-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+}

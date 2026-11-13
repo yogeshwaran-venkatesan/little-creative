@@ -1,0 +1,155 @@
+<app-page-hero
+  [photo]="banner"
+  eyebrowKey="services.hero.eyebrow"
+  titleKey="services.hero.title"
+  leadKey="services.hero.lead"
+/>
+
+<!-- Quick jump chips -->
+<nav class="chips-wrap container" [attr.aria-label]="'services.jumpTo' | translate" appReveal>
+  <div class="chips">
+    @for (s of services; track s.key) {
+      <button type="button" class="chip" (click)="scrollTo(s.key)">
+        {{ 'categories.' + s.key | translate }}
+      </button>
+    }
+    <button type="button" class="chip chip-gold" (click)="scrollTo('packages')">
+      {{ 'services.packages.eyebrow' | translate }}
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== SERVICE ROWS ===================== -->
+<section class="section rows">
+  <div class="container">
+    @for (s of services; track s.key; let i = $index; let odd = $odd) {
+      <article class="row" [class.flip]="odd" [id]="s.key">
+        <span class="row-watermark" aria-hidden="true">{{ pad(i + 1) }}</span>
+
+        <a
+          class="row-media reveal--clip"
+          appReveal
+          routerLink="/portfolio"
+          [queryParams]="{ category: s.key }"
+          data-cursor="view"
+          [attr.aria-label]="('services.seeWork' | translate) + ' — ' + ('categories.' + s.key | translate)"
+        >
+          <div class="clip-inner">
+            <app-photo [photo]="s.photo" sizes="(max-width: 900px) 92vw, 50vw" [width]="1400" />
+          </div>
+          <span class="frame" aria-hidden="true"></span>
+        </a>
+
+        <div class="row-copy">
+          <span class="eyebrow" appReveal>{{ pad(i + 1) }} — {{ 'categories.' + s.key | translate }}</span>
+          <h2 class="row-title" appReveal [revealDelay]="100">
+            {{ 'services.items.' + s.key + '.title' | translate }}
+          </h2>
+          <p class="row-text" appReveal [revealDelay]="180">
+            {{ 'services.items.' + s.key + '.text' | translate }}
+          </p>
+
+          <ul class="features">
+            @for (f of s.features; track f; let fi = $index) {
+              <li appReveal [revealDelay]="240 + fi * 80">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" />
+                </svg>
+                {{ 'services.items.' + s.key + '.features.' + f | translate }}
+              </li>
+            }
+          </ul>
+
+          <div class="row-actions" appReveal [revealDelay]="480">
+            <a routerLink="/contact" [queryParams]="{ service: s.key }" class="btn btn-gold btn-sm">
+              {{ 'services.enquire' | translate }}
+            </a>
+            <a routerLink="/portfolio" [queryParams]="{ category: s.key }" class="text-link">
+              {{ 'services.seeWork' | translate }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<!-- ===================== PACKAGES (sample) ===================== -->
+<section id="packages" class="section packages">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" appReveal>{{ 'services.packages.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'services.packages.title' | translate"></h2>
+      <p class="section-lead" appReveal [revealDelay]="200">{{ 'services.packages.lead' | translate }}</p>
+    </div>
+
+    <div class="package-grid">
+      @for (p of packages; track p.key; let i = $index) {
+        <article class="package" [class.featured]="p.featured" appReveal [revealDelay]="i * 120">
+          @if (p.featured) {
+            <span class="package-badge">{{ 'services.packages.featured' | translate }}</span>
+          }
+          <h3 class="package-name">{{ 'services.packages.items.' + p.key + '.name' | translate }}</h3>
+          <p class="package-for">{{ 'services.packages.items.' + p.key + '.for' | translate }}</p>
+
+          <p class="package-price">{{ p.price ?? ('services.packages.onRequest' | translate) }}</p>
+
+          <ul class="package-features">
+            @for (f of p.features; track f) {
+              <li>{{ 'services.packages.items.' + p.key + '.features.' + f | translate }}</li>
+            }
+          </ul>
+
+          <a
+            routerLink="/contact"
+            [queryParams]="{ package: p.key }"
+            class="btn"
+            [class.btn-gold]="p.featured"
+            [class.btn-ghost]="!p.featured"
+          >
+            {{ 'services.packages.cta' | translate }}
+          </a>
+        </article>
+      }
+    </div>
+
+    <p class="package-note" appReveal>{{ 'services.packages.note' | translate }}</p>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section faq">
+  <div class="container faq-grid">
+    <div class="section-head">
+      <span class="eyebrow" appReveal>{{ 'services.faq.eyebrow' | translate }}</span>
+      <h2 class="section-title" appReveal [revealDelay]="100" [innerHTML]="'services.faq.title' | translate"></h2>
+    </div>
+
+    <div class="faq-list">
+      @for (q of faqs; track q; let i = $index) {
+        <div class="faq-item" [class.open]="openFaq() === i" appReveal [revealDelay]="i * 90">
+          <h3>
+            <button
+              type="button"
+              class="faq-q"
+              [attr.aria-expanded]="openFaq() === i"
+              [attr.aria-controls]="'faq-' + i"
+              (click)="toggleFaq(i)"
+            >
+              <span>{{ 'services.faq.items.' + q + '.q' | translate }}</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+          </h3>
+          <div class="faq-a" [id]="'faq-' + i" role="region">
+            <div class="faq-a-inner">
+              <p>{{ 'services.faq.items.' + q + '.a' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,301 @@
+:host {
+  display: block;
+}
+
+.gallery-section {
+  padding-top: clamp(40px, 6vw, 72px);
+}
+
+/* =========================================================
+   FILTERS — gold pill slides to the active tab
+   ========================================================= */
+.filters-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.filters {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  max-width: 100%;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
+}
+
+.indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  border-radius: 999px;
+  background: var(--gold);
+  transition:
+    transform 0.6s var(--ease),
+    width 0.6s var(--ease);
+}
+
+.filter {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-muted);
+  transition: color 0.4s var(--ease);
+}
+
+.filter:hover {
+  color: var(--text);
+}
+
+.filter.active {
+  color: #17120c;
+}
+
+:host-context(html.lang-ta) .filter {
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.count {
+  margin-left: 3px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   MASONRY GALLERY
+   ========================================================= */
+.masonry {
+  columns: 3 300px;
+  column-gap: clamp(12px, 1.6vw, 22px);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: clamp(12px, 1.6vw, 22px);
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: var(--radius);
+  text-align: left;
+  cursor: pointer;
+}
+
+.tile-photo {
+  width: 100%;
+  /* transitions come from .reveal--clip in styles.scss */
+}
+
+.tile:hover .tile-photo,
+.tile:focus-visible .tile-photo {
+  transform: scale(1.06);
+  filter: brightness(0.7) saturate(1.1);
+}
+
+/* Dark gradient for the label */
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(12, 10, 8, 0.75) 0%, transparent 45%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+
+.tile:hover::after,
+.tile:focus-visible::after {
+  opacity: 1;
+}
+
+/* ---------- Viewfinder corners ---------- */
+.vf {
+  position: absolute;
+  z-index: 2;
+  width: 26px;
+  height: 26px;
+  border: 0 solid var(--gold-soft);
+  opacity: 0;
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.7s var(--ease);
+  pointer-events: none;
+}
+
+.vf-tl {
+  top: 16px;
+  left: 16px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  transform: translate(-14px, -14px);
+}
+
+.vf-tr {
+  top: 16px;
+  right: 16px;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+  transform: translate(14px, -14px);
+}
+
+.vf-bl {
+  bottom: 16px;
+  left: 16px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+  transform: translate(-14px, 14px);
+}
+
+.vf-br {
+  bottom: 16px;
+  right: 16px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  transform: translate(14px, 14px);
+}
+
+.tile:hover .vf,
+.tile:focus-visible .vf {
+  opacity: 1;
+  transform: none;
+}
+
+/* Centre focus point — like an autofocus lock */
+.focus-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1.5px solid var(--gold-soft);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scale(1.8);
+  pointer-events: none;
+}
+
+.tile:hover .focus-dot {
+  animation: focus-lock 0.9s var(--ease) 0.1s both;
+}
+
+@keyframes focus-lock {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* ---------- Label ---------- */
+.tile-meta {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 20px;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s var(--ease),
+    transform 0.6s var(--ease);
+}
+
+.tile:hover .tile-meta,
+.tile:focus-visible .tile-meta {
+  opacity: 1;
+  transform: none;
+}
+
+.tile-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--gold-soft);
+}
+
+.tile-cat {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+:host-context(html.lang-ta) .tile-cat {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* Touch screens: show labels, skip hover-only effects */
+@media (hover: none) {
+  .tile-meta {
+    opacity: 1;
+    transform: none;
+  }
+
+  .tile::after {
+    opacity: 0.8;
+  }
+}
+
+/* =========================================================
+   INSTAGRAM BAND
+   ========================================================= */
+.insta {
+  padding-bottom: clamp(72px, 10vw, 120px);
+}
+
+.insta-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-block: clamp(36px, 5vw, 56px);
+  border-block: 1px solid var(--line);
+}
+
+.insta-title {
+  margin-top: 14px;
+  font-size: clamp(28px, 3.4vw, 42px);
+}
+
+:host-context(html.lang-ta) .insta-title {
+  font-size: clamp(22px, 2.6vw, 30px);
+}
+
+.insta-text {
+  margin-top: 8px;
+  color: var(--text-muted);
+}
